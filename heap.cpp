@@ -81,7 +81,8 @@ void deleteSort(int heaparray[], int orderarray[], int &heapsize, int y){ //dele
 	while(y > 0){ //keep running until heap is empty
 		int move;
 		move = heaparray[0]; //get the root of the heap
-		heaparray[0] = heaparray[heapsize]; //get the smallest/last element, this overrides the (previously) largest
+		heaparray[0] = heaparray[heapsize-1]; //get the smallest/last element, this overrides the (previously) largest
+		cout << heaparray[0];
 		heapsize--; //shrink the heap size as element is essentially deleted
 		orderarray[z] = move; //store the root to the new array via MAX HEAP
 		z++;
@@ -90,7 +91,7 @@ void deleteSort(int heaparray[], int orderarray[], int &heapsize, int y){ //dele
 		buildHeap(heaparray, heapsize); //call a resort of the modified heap to put the next largest at the root
 		
 		cout << endl;
-		for(int t = 0; t < heapsize; t++){ //print heap array each time to show delete
+		for(int t = 0; t < heapsize-1; t++){ //print heap array each time to show delete
 			cout << heaparray[t] << " ";
 		}
 		y--;
@@ -140,14 +141,14 @@ int main(){
 		char* filename = new char[100];
 		cin.getline(filename, 100);
 		
-		ifstream inFile;
+		ifstream inFile; //file input
 		inFile.open(filename);
 		
 		int inputToken;
 		int count = 0;
 		int i;
 		
-		while(inFile >> inputToken){
+		while(inFile >> inputToken){ //input tokens from file into input array
 			inputarr[count] = inputToken;
 			count++;
 			i++;
@@ -191,7 +192,7 @@ int main(){
 	
 	
 	cout << "\nHeap array:" << endl;
-	for(int t = 0; t < heapsize; t++){ //print heap array before deletesort
+	for(int t = 0; t < heapsize-1; t++){ //print heap array before deletesort
 		cout << heaparray[t] << " ";
 	}
 	//cout << " Size: " << heapsize;
